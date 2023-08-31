@@ -42,4 +42,18 @@ public class MyRestControllerForStudentResource {
 	}
 	
 
+	@PostMapping("/update_student")
+	public ResponseEntity<String> updateStudent(@RequestBody Student std)
+	{
+		System.out.println("inside create student controller update method...");
+		return apiService.updateStudent(std);
+	}
+
+	@GetMapping("/delete_student/{id}")
+	public ResponseEntity<String> deleteStudent(@PathVariable("id") int id)
+	{
+		System.out.println("inside delete student controller update method...");
+		return apiService.deleteStudent(id);
+	}
+	
 }
