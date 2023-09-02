@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -107,9 +108,14 @@ public class VotingApiService {
 		
 		Student retrivedStd = restTemplate.postForObject(url, std, Student.class);
 
+		UUID txnId = UUID.randomUUID();
+		
+		String transactionId = txnId.toString();
+		
 		HttpHeaders resHeaders = new HttpHeaders();
 		resHeaders.add("xyz", "123");
 		resHeaders.add("pqr", "aaaa");
+		resHeaders.add("transactionId", transactionId);
 
 		return ResponseEntity.ok().headers(resHeaders).body(retrivedStd);
 	}
